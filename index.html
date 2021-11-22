@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket Test</title>
+  </head>
+  <body>
+    <h2>Client 1</h2>
+    <br /><br />
+    <button onclick="sendMessage()">Send Message</button>
+  </body>
+  <script>
+    const socket = new WebSocket("ws://192.168.1.210:3000");
+
+    socket.addEventListener("open", function (event) {
+      console.log("Connected to Server.");
+    });
+
+    socket.addEventListener("message", function (event) {
+      console.log("Message: ", event.data);
+    });
+
+    const sendMessage = () => {
+      console.log("Sending msg..");
+      socket.send("Hello");
+    };
+  </script>
+</html>
