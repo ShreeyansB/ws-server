@@ -13,8 +13,17 @@
   <script>
     const socket = new WebSocket("ws://192.168.1.210:3000");
 
+    function ping() {
+      socket.send("__ping__");
+      tm = setInterval(function () {
+        console.log("[!] Pinging..");
+        socket.send("__ping__");
+      }, 4000);
+    }
+
     socket.addEventListener("open", function (event) {
-      console.log("Connected to Server.");
+      ping();
+      socket.send("I have connected.");
     });
 
     socket.addEventListener("message", function (event) {
