@@ -38,14 +38,18 @@ wss.on("connection", function connection(ws, req) {
 
   ws.on("message", function incoming(message) {
     console.log(`[!] Message Receieved from ${req.socket.remoteAddress}`);
-    msg = JSON.parse(message);
-    console.log(queryData);
-    msg = { ...msg, time: new Date().toISOString() };
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(msg), { binary: false });
-      }
-    });
+    try {
+      msg = JSON.parse(message);
+      console.log(queryData);
+      msg = { ...msg, time: new Date().toISOString() };
+      wss.clients.forEach(function each(client) {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify(msg), { binary: false });
+        }
+      });
+    } catch (e) {
+      console.log("[!] Error Occured:", e);
+    }
   });
 });
 
