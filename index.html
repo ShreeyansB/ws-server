@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Socket Test</title>
+    <title>Socket Test Client</title>
   </head>
   <body>
     <h2>Client 1</h2>
@@ -13,16 +13,16 @@
   <script>
     const socket = new WebSocket("ws://192.168.1.210:3000");
 
-    function ping() {
-      socket.send("__ping__");
-      tm = setInterval(function () {
-        console.log("[!] Pinging..");
-        socket.send("__ping__");
-      }, 4000);
-    }
+    // function ping() {
+    //   socket.send("__ping__");
+    //   tm = setInterval(function () {
+    //     console.log("[!] Pinging..");
+    //     socket.send("__ping__");
+    //   }, 4000);
+    // }
 
     socket.addEventListener("open", function (event) {
-      ping();
+      // ping();
       socket.send("I have connected.");
     });
 
