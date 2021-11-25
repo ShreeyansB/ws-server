@@ -27,3 +27,4 @@ git clone https://github.com/ShreeyansB/ws-server
 cd ws-server
 npm start
 ```
+> You may need to allow Insecure Websocket Connections in your browser settings
